@@ -1,0 +1,121 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #ccc !important;
+    border-color: #fff;
+}
+
+.boldText {
+    font-weight: bold;
+}
+
+body {
+    background-color: #EAEAEA;
+}
+
+.tab-pane {
+    padding-top: 12px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.navbar {
+    background-color: #363745 !important;
+}
+
+.nav li a {
+    color: #373737;
+}
+
+.navBarItem a {
+    color: #EAEAEA !important;
+}
+
+.navBarItem:hover a {
+    color: #adadad !important;
+}
+
+.navBarHead {
+    color: #EAEAEA !important;
+}
+
+.navBarHead:hover {
+    color: #adadad !important;
+}
+
+h2, h3, h4 {
+    color: #373737 !important;
+}
+
+ul li p, footer p {
+    color: #373737 !important;
+}
+
+.genButton {
+    background-color: #363745 !important;
+    color: #E0E0E0 !important;
+    margin-top: -50px !important;
+}
+
+.genButton:hover {
+    background-color: #585970 !important;
+}
+
+.formContainer {
+    background-color: whitesmoke;
+    padding-bottom: 15px;
+}
+
+.qrContainer {} /*somehow adds top margin to qr code space, leave this!*/
+
+.nav-tabs li a:hover {
+    background-color: white !important;
+}
+
+.pageBody {
+    background-color: whitesmoke;
+    padding: 1px 0px 7px 15px;
+}
+
+hr {
+    border-top-color: #373737;
+}
+
+/*html helper styles ---------------------------------------------*/
+.QRImgView {
+    padding-left: 50px !important;
+    width: 325px;
+    height: 325px;
+}
+
+.redBtn {
+    background-color: red !important;
+    height: 25px;
+    width: 25px;
+}
