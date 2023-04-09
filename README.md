@@ -2,12 +2,22 @@
 
 This project is my senior project and also my first webapp. While it is simple, I used it as an opportunity to learn the basics of webapp development using the ASP.NET MVC framework. When I started this project I had no experience with this framework or the MVC pattern, so throughout the duration of the development and design process I made many readjustments. I worked to ensure that I followed the proper conventions, though I've definitely got more to learn.
 
+>**Warning**
+The EmailQRCode function will not work out of the box due to it relying on user secrets. All it takes to get this working with your own Gmail address is to create an app password (https://support.google.com/mail/answer/185833?hl=en) and replace the SMTP network credentials in HomeController.cs.
+
+```
+smtpServer.Credentials = new NetworkCredential(emailAddress, appPassword);
+```
+
 ## Generate QR Codes for:
 * URLs
 * Phone numbers
 * SMS messages
 * Emails
 * Contact Data
+
+>**Note**
+Uses QRCoder for QR code generation (https://github.com/codebude/QRCoder).
 
 ## QR Code Database
 All QR codes are timestamped and stored in a database upon generation along with the form input used to generated them. Currently this is all stored in a local MSSQL database, but it could be migrated to an online database. There is a page dedicated to displaying these database entries, so previously generated QR codes can be viewed.
