@@ -1,0 +1,252 @@
+﻿@model QR_Gen.ViewModels.FormViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<head>
+    <link rel="stylesheet" href="Styles.css" />
+    <script>
+        function hideImg() {
+            document.getElementById("QRImgDisplay").style.display = "none";
+            document.getElementById("sendForm").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-8 formContainer" style="background-color: #F5F5F5">
+            <div class="container col-md-12">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#url">URL</a></li>
+                    <li><a data-toggle="tab" href="#phone">Phone Number</a></li>
+                    <li><a data-toggle="tab" href="#sms">SMS</a></li>
+                    <li><a data-toggle="tab" href="#email">Email</a></li>
+                    <li><a data-toggle="tab" href="#contactData">Contact Data</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="url" class="tab-pane fade in active">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="urlForm">URL</label>
+                                    @Html.TextBoxFor(m => m.URLData, new { @class = "form-control", placeholder = "https://example.com" })
+                                    <input id="Submit" style="margin-bottom: -65px" class="btn genButton" type="submit" value="Generate" formaction="@Url.Action("GenerateURLQR")" formmethod="post" onclick="ImgToggle()"/>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="colorSelection" style="margin-right: 15px">Color</label>
+                                    <div id="colorSelection" style="width: 150px">
+                                        @{ 
+                                            List<SelectListItem> listItems = new List<SelectListItem>();
+                                            {
+                                                listItems.Add(new SelectListItem { Text = "Black", Value = "0" });
+                                                listItems.Add(new SelectListItem { Text = "Red", Value = "1" });
+                                                listItems.Add(new SelectListItem { Text = "Green", Value = "2" });
+                                                listItems.Add(new SelectListItem { Text = "Blue", Value = "3" });
+                                                listItems.Add(new SelectListItem { Text = "Purple", Value = "4" });
+                                                listItems.Add(new SelectListItem { Text = "Orange", Value = "5" });
+                                            }
+
+                                         }
+                                         @Html.DropDownListFor(m => m.SelectedColor, listItems, new {@class = "form-control"})
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+                        <hr />
+                    </div>
+
+                    <div id="phone" class="tab-pane fade">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="phoneForm">Phone Number</label>
+                                    @Html.TextBoxFor(m => m.phoneNumber, new { @class = "form-control", type = "tel", placeholder = "+12 (123)-456-7890" })
+                                    <input id="Submit" style="margin-bottom: -65px" class="btn genButton" type="submit" value="Generate" formaction="@Url.Action("GeneratePhoneQR")" formmethod="post" />
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="colorSelection" style="margin-right: 15px">Color</label>
+                                    <div id="colorSelection" style="width: 150px">
+                                        @{
+                                            List<SelectListItem> listItems = new List<SelectListItem>();
+                                            {
+                                                listItems.Add(new SelectListItem { Text = "Black", Value = "0" });
+                                                listItems.Add(new SelectListItem { Text = "Red", Value = "1" });
+                                                listItems.Add(new SelectListItem { Text = "Green", Value = "2" });
+                                                listItems.Add(new SelectListItem { Text = "Blue", Value = "3" });
+                                                listItems.Add(new SelectListItem { Text = "Purple", Value = "4" });
+                                                listItems.Add(new SelectListItem { Text = "Orange", Value = "5" });
+                                            }
+
+                                        }
+                                        @Html.DropDownListFor(m => m.SelectedColor, listItems, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+                        <hr />
+                    </div>
+
+                    <div id="sms" class="tab-pane fade">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="smsFormNum">To</label>
+                                    @Html.TextBoxFor(m => m.phoneNumber, new { @class = "form-control", type = "tel", placeholder = "+12 (123)-456-7890" })
+                                    <label for="smsFormMsg">Message</label>
+                                    @Html.TextBoxFor(m => m.SMSMessage, new { @class = "form-control", type = "text" })
+                                    <input id="Submit" style="margin-bottom: -65px" class="btn genButton" type="submit" value="Generate" formaction="@Url.Action("GenerateSMSQR")" formmethod="post" />
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="colorSelection" style="margin-right: 15px">Color</label>
+                                    <div id="colorSelection" style="width: 150px">
+                                        @{
+                                            List<SelectListItem> listItems = new List<SelectListItem>();
+                                            {
+                                                listItems.Add(new SelectListItem { Text = "Black", Value = "0" });
+                                                listItems.Add(new SelectListItem { Text = "Red", Value = "1" });
+                                                listItems.Add(new SelectListItem { Text = "Green", Value = "2" });
+                                                listItems.Add(new SelectListItem { Text = "Blue", Value = "3" });
+                                                listItems.Add(new SelectListItem { Text = "Purple", Value = "4" });
+                                                listItems.Add(new SelectListItem { Text = "Orange", Value = "5" });
+                                            }
+
+                                        }
+                                        @Html.DropDownListFor(m => m.SelectedColor, listItems, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+                        <hr />
+                    </div>
+
+                    <div id="email" class="tab-pane fade">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="mailFormTo">To</label>
+                                    @Html.TextBoxFor(m => m.emailAddress, new { @class = "form-control", type = "email", placeholder = "example@mail.com" })
+                                    <label for="mailFormSubject">Subject</label>
+                                    @Html.TextBoxFor(m => m.emailSubject, new { @class = "form-control", type = "text" })
+                                    <label for="mailFormMsg">Message</label>
+                                    @Html.TextBoxFor(m => m.emailBody, new { @class = "form-control", type = "text" })
+                                    <input id="Submit" style="margin-bottom: -65px" class="btn genButton" type="submit" value="Generate" formaction="@Url.Action("GenerateEmailQR")" formmethod="post" />
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="colorSelection" style="margin-right: 15px">Color</label>
+                                    <div id="colorSelection" style="width: 150px">
+                                        @{
+                                            List<SelectListItem> listItems = new List<SelectListItem>();
+                                            {
+                                                listItems.Add(new SelectListItem { Text = "Black", Value = "0" });
+                                                listItems.Add(new SelectListItem { Text = "Red", Value = "1" });
+                                                listItems.Add(new SelectListItem { Text = "Green", Value = "2" });
+                                                listItems.Add(new SelectListItem { Text = "Blue", Value = "3" });
+                                                listItems.Add(new SelectListItem { Text = "Purple", Value = "4" });
+                                                listItems.Add(new SelectListItem { Text = "Orange", Value = "5" });
+                                            }
+
+                                        }
+                                        @Html.DropDownListFor(m => m.SelectedColor, listItems, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+                        <hr />
+                    </div>
+
+                    <div id="contactData" class="tab-pane fade">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="contactFormFirst">First Name</label>
+                                    @Html.TextBoxFor(m => m.firstName, new { @class = "form-control", type = "text", placeholder = "John" })
+                                    <label for="contactFormMobile">Mobile Phone</label>
+                                    @Html.TextBoxFor(m => m.phoneNumber, new { @class = "form-control", type = "tel", placeholder = "+12 (123)-456-7890" })
+                                    <label for="contactFormMail">Email</label>
+                                    @Html.TextBoxFor(m => m.emailAddress, new { @class = "form-control", type = "email", placeholder = "example@mail.com" })
+                                    <label for="contactFormAddrNum">House Number</label>
+                                    @Html.TextBoxFor(m => m.houseNumber, new { @class = "form-control", type = "text" })
+                                    <label for="contactFormAddrCity">City</label>
+                                    @Html.TextBoxFor(m => m.city, new { @class = "form-control", type = "text" })
+                                    <label for="contactFormAddrZip">Zip Code</label>
+                                    @Html.TextBoxFor(m => m.zipCode, new { @class = "form-control", type = "text" })
+                                    <label for="contactFormSite">Website</label>
+                                    @Html.TextBoxFor(m => m.URLData, new { @class = "form-control", type = "text", placeholder = "https://example.com" })
+                                    <label for="contactFormNote">Note</label>
+                                    @Html.TextBoxFor(m => m.note, new { @class = "form-control", type = "text" })
+                                    <input id="Submit" style="margin-bottom: -65px" class="btn genButton" type="submit" value="Generate" formaction="@Url.Action("GenerateContactDataQR")" formmethod="post" />
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="contactFormLast">Last Name</label>
+                                    @Html.TextBoxFor(m => m.lastName, new { @class = "form-control", type = "text", placeholder = "Doe" })
+                                    <label for="contactFormWork">Work Phone</label>
+                                    @Html.TextBoxFor(m => m.workNumber, new { @class = "form-control", type = "tel", placeholder = "+12 (123)-456-7890" })
+                                    <label for="contactFormOrg">Organization / Company</label>
+                                    @Html.TextBoxFor(m => m.organization, new { @class = "form-control", type = "text" })
+                                    <label for="contactFormAddrStreet">Street</label>
+                                    @Html.TextBoxFor(m => m.street, new { @class = "form-control", type = "text" })
+                                    <label for="contactFormAddrState">State</label>
+                                    @Html.TextBoxFor(m => m.state, new { @class = "form-control", type = "text" })
+
+                                    <label for="colorSelection" style="margin-right: 15px">Color</label>
+                                    <div id="colorSelection" style="width: 150px">
+                                        @{
+                                            List<SelectListItem> listItems = new List<SelectListItem>();
+                                            {
+                                                listItems.Add(new SelectListItem { Text = "Black", Value = "0" });
+                                                listItems.Add(new SelectListItem { Text = "Red", Value = "1" });
+                                                listItems.Add(new SelectListItem { Text = "Green", Value = "2" });
+                                                listItems.Add(new SelectListItem { Text = "Blue", Value = "3" });
+                                                listItems.Add(new SelectListItem { Text = "Purple", Value = "4" });
+                                                listItems.Add(new SelectListItem { Text = "Orange", Value = "5" });
+                                            }
+
+                                        }
+                                        @Html.DropDownListFor(m => m.SelectedColor, listItems, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br />
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-sm-12">
+                <div style="margin-top: 10px; margin-left: -62px" class="row qrContainer">
+                    <img id="QRImgDisplay" style=" height: 285px !important" class="QRImgView" src="@Url.Action("DisplayQRImage")" onerror="hideImg()"/>
+                </div>
+
+                <div id="sendForm" style="margin-top: 20px; margin-bottom: 20px" class="row qrContainer">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                    {
+                        <label for="sendQRCodeEmailAddress">Share QR Code</label>
+                        @Html.TextBoxFor(m => m.emailAddress, new { @class = "form-control", type = "email", placeholder = "example@mail.com" })
+                        <label for="sendQRCodeEmailBody">Message</label>
+                        @Html.TextBoxFor(m => m.emailBody, new { @class = "form-control", type = "text", placeholder = "" })
+                        <input id="Submit" style="margin-bottom: -65px" class="btn genButton" type="submit" value="Send" formaction="@Url.Action("EmailQRCode")" formmethod="post" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/Scripts/Scripts.js")
+</body>

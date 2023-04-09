@@ -1,0 +1,92 @@
+﻿@model IEnumerable<QR_Gen.ViewModels.FormViewModel>
+
+@{
+    ViewBag.Title = "Display";
+}
+<head>
+    <link rel="stylesheet" href="Styles.css" />
+</head>
+<body>
+    <div class="pageBody" style="background-color: #E0E0E0">
+        <h2 style="font-weight:bold">QR Code Database</h2>
+
+        <table id="dbTable" class="table">
+            <tr style="background-color: #64667a; color: #F5F5F5">
+                <th>
+                    @Html.DisplayNameFor(model => model.timestamp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.URLData)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.phoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SMSMessage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.emailAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.emailSubject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.emailBody)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.firstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lastName)
+                </th>
+                <th>
+                    QR Code
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Reverse())
+            {
+                <tr style="background-color: #F5F5F5">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.timestamp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.URLData)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SMSMessage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.emailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.emailSubject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.emailBody)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.firstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lastName)
+                    </td>
+                    <td>
+                        <img src="@String.Format("data:image/jpg;base64,{0}", item.QRCode)" style="width: 100px; height: 100px" onclick="window.open(this.src)" />
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    @Scripts.Render("~/Scripts/Scripts.js")
+</body>
