@@ -80,7 +80,7 @@ namespace QR_Gen.Controllers
                     QRCodeGenerator qrGenerator = new QRCodeGenerator();
                     QRCodeData qrCodeData = qrGenerator.CreateQrCode(generator.ToString(), QRCodeGenerator.ECCLevel.Q); //generator produces payload
                     Base64QRCode qrCode = new Base64QRCode(qrCodeData);
-                    QRImageSrc = qrCode.GetGraphic(20, QRDarkColor, "#ffffff"); //TODO: Set colors here
+                    QRImageSrc = qrCode.GetGraphic(20, QRDarkColor, "#ffffff");
 
                     //Stores QRImageSrc in database w/ timestamp, type, and QR code
                     form.timestamp = DateTime.Now.ToString();
